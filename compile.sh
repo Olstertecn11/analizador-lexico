@@ -1,0 +1,3 @@
+echo "Compilando"
+make
+./main
