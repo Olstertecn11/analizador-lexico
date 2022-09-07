@@ -1,4 +1,5 @@
 #include "./../include/argument_controller.h"
+#include "analyzer.cpp"
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -19,13 +20,14 @@ void A_Controller::multiRead(int size, char *argv[]){
 }
 
 void A_Controller::loadFile(string filename){
+  Analyzer analyzer = Analyzer();
   ifstream file;
   string cadena, substring;
   file.open(filename);
   if(file.is_open()){
     while(!file.eof()){
       getline(file, cadena);
-      cout << "line readed: " << cadena << endl;
+      analyzer.searchSingleToken(cadena);
     }
     file.close();
   }

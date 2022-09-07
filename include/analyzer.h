@@ -11,8 +11,13 @@ class Analyzer
     vector<Token> wordTokens;
     vector<Token> foundTokens;
   public:
+    Analyzer();
     vector<string> split(string);
-    void generateTokens();
+    void generateSingleTokens();
+    void generateWordTokens();
     void searchSingleToken(string);
     void searchWordToken(string);
+    bool isSinleToken(string);
+    Token getSingleToken(string);
+    
 };
