@@ -10,11 +10,11 @@ void Analyzer::generateSingleTokens(){
   this->singleTokens.push_back(Token("PuntoYComa", ";"));
   this->singleTokens.push_back(Token("Punto", "."));
   this->singleTokens.push_back(Token("Igual", "="));
-  string letters = "abcdefjhigklmnñopqrstuvwxyz";
-  for(int i = 0; i < letters.length(); i++){
-    string s(1, letters[i]);
-    this->singleTokens.push_back(Token("Id", s));
-  }
+  /* string letters = "abcdefjhigklmnñopqrstuvwxyz"; */
+  /* for(int i = 0; i < letters.length(); i++){ */
+  /*   string s(1, letters[i]); */
+  /*   this->singleTokens.push_back(Token("Id", s)); */
+  /* } */
 }
 
 
@@ -51,6 +51,19 @@ void Analyzer::searchSingleToken(string line){
 }
 
 
+void Analyzer::generateWordTokens(){
+  this->wordTokens.push_back(Token("reservada", "include"));
+  this->wordTokens.push_back(Token("reservada", "int"));
+  this->wordTokens.push_back(Token("reservada", "string"));
+  this->wordTokens.push_back(Token("reservada", "printf"));
+  this->wordTokens.push_back(Token("reservada", "cout"));
+  this->wordTokens.push_back(Token("reservada", "using"));
+  this->wordTokens.push_back(Token("reservada", "namespace"));
+  this->wordTokens.push_back(Token("reservada", "std"));
+  this->wordTokens.push_back(Token("reservada", "iostream"));
+  this->wordTokens.push_back(Token("reservada", "main"));
+  this->wordTokens.push_back(Token("reservada", "endl"));
+}
 
 
 

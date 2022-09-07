@@ -9,13 +9,13 @@ class Analyzer
 {
   private:
     vector<Token> singleTokens;
-    /* vector<Token> wordTokens; */
+    vector<Token> wordTokens;
     /* vector<Token> foundTokens; */
   public:
     Analyzer();
     /* vector<string> split(string); */
     void generateSingleTokens();
-    /* void generateWordTokens(); */
+    void generateWordTokens();
     void searchSingleToken(string);
     /* void searchWordToken(string); */
     bool isSinleToken(string);
