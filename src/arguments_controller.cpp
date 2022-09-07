@@ -12,6 +12,11 @@ void A_Controller::readArguments(int argc, char *argv[]){
   }
 }
 
+void A_Controller::multiRead(char *argv[]){
+  for(int i = 1; i < 4; i++){
+    this->loadFile(argv[i]);
+  }
+}
 
 void A_Controller::loadFile(string filename){
   ifstream file;
