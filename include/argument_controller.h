@@ -1,9 +1,15 @@
+#include "./../src/analyzer.cpp"
+/* #include "analyzer.h" */
+/* #include "./../include/analyzer.h" */
 #include <iostream>
-using namespace std;
+
+
 
 class A_Controller{
   public:
+    A_Controller();
+    Analyzer analyzer;
     void readArguments(int, char *[]);
-    void loadFile(string);
+    void loadFile(std::string);
     void multiRead(int, char *[]);
 };
