@@ -16,17 +16,16 @@ void A_Controller::readArguments(int argc, char *argv[]){
 void A_Controller::loadFile(string filename){
   ifstream file;
   string cadena, substring;
-  int pos,size;
-  file.open(filename, ios::in);
-  if(!file.fail()){
-    file >> size; 
+  file.open(filename);
+  if(file.is_open()){
     while(!file.eof()){
       getline(file, cadena);
       cout << "line readed: " << cadena << endl;
     }
+    file.close();
   }
   else{
-    cout << "error opening file" << endl;
+    cout << "error opening file: " << filename << endl;
   }
 }
 

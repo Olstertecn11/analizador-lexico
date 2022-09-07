@@ -3,7 +3,7 @@
 
 
 int main(int argc, char *argv[]){
-
-  A_Controller::readArguments(argc, argv);
+  A_Controller args_controller;
+  args_controller.readArguments(argc, argv);
 
 }
