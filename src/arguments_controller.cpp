@@ -8,15 +8,26 @@ void A_Controller::readArguments(int argc, char *argv[]){
     cout << "Missing arguments, usage: " << argv[0] << " <filename> " << endl;
   }
   else{
-    ifstream file(argv[1]);
-    if(file.is_open()){
-      cout << "could not open this file" << endl; 
-    }
-    else{
-      cout << " file to read... " << argv[1] << endl;
+    this->loadFile(argv[1]);
+  }
+}
+
+
+void A_Controller::loadFile(string filename){
+  ifstream file;
+  string cadena, substring;
+  int pos,size;
+  file.open(filename, ios::in);
+  if(!file.fail()){
+    file >> size; 
+    while(!file.eof()){
+      getline(file, cadena);
+      cout << "line readed: " << cadena << endl;
     }
   }
-
+  else{
+    cout << "error opening file" << endl;
+  }
 }
 
 

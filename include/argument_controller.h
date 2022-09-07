@@ -1,4 +1,8 @@
+#include <iostream>
+using namespace std;
+
 class A_Controller{
   public:
-    static void readArguments(int, char *[]);
+    void readArguments(int, char *[]);
+    void loadFile(string);
 };
