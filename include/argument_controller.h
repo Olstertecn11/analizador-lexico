@@ -5,5 +5,5 @@ class A_Controller{
   public:
     void readArguments(int, char *[]);
     void loadFile(string);
-    void multiRead(char *[]);
+    void multiRead(int, char *[]);
 };
