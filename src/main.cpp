@@ -1,11 +1,6 @@
-#include <iostream>
-using namespace std;
-
-
+#include "token.cpp"
 
 int main(){
-
-  cout << "hello from main file" << endl;
 
 
 }
