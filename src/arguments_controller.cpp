@@ -13,16 +13,8 @@ void A_Controller::readArguments(int argc, char *argv[]){
       cout << "could not open this file" << endl; 
     }
     else{
-      while(!file.eof())
-      {
-        string cadena ;
-        getline(file,cadena );
-
-      }
-
+      cout << " file to read... " << argv[1] << endl;
     }
-
-
   }
 
 }
