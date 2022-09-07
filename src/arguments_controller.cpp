@@ -8,7 +8,7 @@ void A_Controller::readArguments(int argc, char *argv[]){
     cout << "Missing arguments, usage: " << argv[0] << " <filename> " << endl;
   }
   else{
-    this->loadFile(argv[1]);
+    this->multiRead(argv);
   }
 }
 
