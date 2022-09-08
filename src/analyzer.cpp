@@ -26,14 +26,16 @@ void Analyzer::generateSingleTokens(){
 }
 
 
-bool Analyzer::isSinleToken(string ref){
-  for(int i = 0; i < this->singleTokens.size(); i++){
-    if(ref == this->singleTokens[i].getVal()){
-      return true;
+bool Analyzer::haveSingleToken(string ref){
+  for(int i = 0; i < ref.length(); i++){
+    string s(1, ref[i]);
+    for(Token token : this->singleTokens){
+      if(token.getVal() == s){
+        return true;
+      }
     }
   }
   return false;
-
 }
 
 Token Analyzer::getSingleToken(string ref){
@@ -47,15 +49,6 @@ Token Analyzer::getSingleToken(string ref){
 
 
 void Analyzer::searchSingleToken(string line){
-  for(int i = 0; i < line.length(); i++){
-    string s(1, line[i]);
-    if(this->isSinleToken(s)){
-      Token token = this->getSingleToken(s);
-      if(token.getVal() != ""){
-        cout << "Lexema= " << token.getVal() << "; Token = " << token.getId() << endl;
-      }
-    }
-  }
 }
 
 
@@ -94,12 +87,10 @@ string Helper::deleteStringFromLine(string line, string ref){
     if(i+real_distance > ref.length()) return line;
     if(Helper::isTheString(line, i, i+real_distance, ref)){
       string linr = Helper::removeSubString(line, i, i+real_distance);
-      /* cout << "line to return in <isthestring> : " << linr << endl; */
       return  linr;
     }
   }
 
-  /* cout << "line to return: " << line << endl; */
   return line;
 }
 
@@ -109,26 +100,32 @@ bool Helper::isTheString(string line, int x, int y, string ref){
   for(int i = x; i <= y; i++){
     new_string += line[i];
   }
-  /* cout << "new_string " << new_string << " == " << ref << endl; */
   return new_string == ref;
 }
 
 string Analyzer::compareLine(string line){
+
   for(Token item : this->wordTokens){
     string prev_string = line;
-    /* cout << "item to eval: " << item.getVal() << endl; */
-    line = Helper::deleteStringFromLine(line, item.getVal());
-    if(line.length() != prev_string.length()){
-      cout << "Lexema = " << item.getVal() << " ; Token = " << item.getId() << endl;
+    if(line.length()> item.getVal().length()) {
+      line = Helper::deleteStringFromLine(line, item.getVal());
+      if(line.length() != prev_string.length()){
+        cout << "Lexema = " << item.getVal() << " ; Token = " << item.getId() << endl;
+      }
     }
+    
   }
+  
   for(Token item : this->singleTokens){
     string prev_string = line;
+    if(line == "") return line;
+    if(!this->haveSingleToken(line)) return "";
     line = this->deleteCharFromLine(line, item.getVal());
     if(line.length() != prev_string.length()){
       cout << "Lexema = " << item.getVal() << " ; Token = " << item.getId() << endl;
     }
   }
+ 
   return line;
 }
 
@@ -146,7 +143,7 @@ string Helper::removeSubStringForChar(string line, string ref){
 string Analyzer::deleteCharFromLine(string line, string ref){
   for(int i = 0; i < line.length(); i++){
     string s(1, line[i]);
-    if(this->isSinleToken(s)){
+    if(s == ref){
       line = Helper::removeSubStringForChar(line, s);
       return line;
     }

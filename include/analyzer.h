@@ -16,7 +16,7 @@ class Analyzer
     void generateWordTokens();
     void searchSingleToken(string);
     void searchWordToken(string);
-    bool isSinleToken(string);
+    bool haveSingleToken(string);
     Token getSingleToken(string);
     void analyzeLine(string);
     string compareLine(string);
