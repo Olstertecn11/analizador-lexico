@@ -20,7 +20,7 @@ class Analyzer
     Token getSingleToken(string);
     void analyzeLine(string);
     string compareLine(string);
-    
+    string deleteCharFromLine(string, string);
 };
 
 
@@ -28,6 +28,7 @@ class Helper{
 
   public:
     static string deleteStringFromLine(string, string);
+    static string removeSubStringForChar(string, string);
     static string removeSubString(string, int , int );
     static bool  isTheString(string, int, int, string);
 };
