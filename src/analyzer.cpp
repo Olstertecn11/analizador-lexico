@@ -79,21 +79,22 @@ string Helper::removeSubString(string line, int x, int y){
   string a_string = line.substr(0, x);
   string b_string = line.substr(y+1, line.length()-1);
   string new_string = a_string + b_string;
-  cout << "substring created: " << new_string << endl;
   return new_string;
 }
 
 
 
 string Helper::deleteStringFromLine(string line, string ref){
-
   for(int i = 0; i < line.length(); i++){
     int real_distance = ref.length()-1;
     if(Helper::isTheString(line, i, i+real_distance, ref)){
-      return Helper::removeSubString(line, i, i+real_distance);
+      string linr = Helper::removeSubString(line, i, i+real_distance);
+      cout << "line to return in <isthestring> : " << linr << endl;
+      return  linr;
     }
   }
 
+  cout << "line to return: " << line << endl;
   return line;
 }
 
@@ -103,6 +104,7 @@ bool Helper::isTheString(string line, int x, int y, string ref){
   for(int i = x; i <= y; i++){
     new_string += line[i];
   }
+  cout << "new_string " << new_string << " == " << ref << endl;
 
   return new_string == ref;
 }
