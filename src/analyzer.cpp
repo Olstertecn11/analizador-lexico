@@ -14,15 +14,21 @@ void Analyzer::generateSingleTokens(){
   this->singleTokens.push_back(Token("Igual", "="));
   this->singleTokens.push_back(Token("Menor", "<"));
   this->singleTokens.push_back(Token("Mayor", ">"));
+  this->singleTokens.push_back(Token("SignoSuma", "+"));
+  this->singleTokens.push_back(Token("SignoMultiplicacion", "*"));
+  this->singleTokens.push_back(Token("SignoResta", "-"));
+  this->singleTokens.push_back(Token("SignoDivision", "/"));
+  this->singleTokens.push_back(Token("DosPuntos", ":"));
+  this->singleTokens.push_back(Token("SignoResiduo", "%"));
   this->singleTokens.push_back(Token("ParentesisIzq", "("));
   this->singleTokens.push_back(Token("ParentesisDer", ")"));
   this->singleTokens.push_back(Token("LlavesDer", "{"));
   this->singleTokens.push_back(Token("LlavesIzq", "}"));
-  /* string letters = "abcdefjhigklmnñopqrstuvwxyz"; */
-  /* for(int i = 0; i < letters.length(); i++){ */
-  /*   string s(1, letters[i]); */
-  /*   this->singleTokens.push_back(Token("Id", s)); */
-  /* } */
+  string letters = "abcdefjhigklmnñopqrstuvwxyz";
+  for(int i = 0; i < letters.length(); i++){
+    string s(1, letters[i]);
+    this->singleTokens.push_back(Token("Id", s));
+  }
 }
 
 
@@ -53,9 +59,16 @@ void Analyzer::searchSingleToken(string line){
 
 
 void Analyzer::generateWordTokens(){
-  this->wordTokens.push_back(Token("reservada", "include"));
   this->wordTokens.push_back(Token("reservada", "iostream"));
+  this->wordTokens.push_back(Token("reservada", "stdio"));
+  this->wordTokens.push_back(Token("reservada", "stdlib"));
+  this->wordTokens.push_back(Token("reservada", "io"));
+  this->wordTokens.push_back(Token("reservada", "include"));
   this->wordTokens.push_back(Token("reservada", "int"));
+  this->wordTokens.push_back(Token("reservada", "float"));
+  this->wordTokens.push_back(Token("reservada", "char"));
+  this->wordTokens.push_back(Token("reservada", "for"));
+  this->wordTokens.push_back(Token("reservada", "while"));
   this->wordTokens.push_back(Token("reservada", "string"));
   this->wordTokens.push_back(Token("reservada", "printf"));
   this->wordTokens.push_back(Token("reservada", "cout"));
@@ -64,6 +77,8 @@ void Analyzer::generateWordTokens(){
   this->wordTokens.push_back(Token("reservada", "std"));
   this->wordTokens.push_back(Token("reservada", "main"));
   this->wordTokens.push_back(Token("reservada", "endl"));
+  this->wordTokens.push_back(Token("reservada", "iostream"));
+  this->wordTokens.push_back(Token("reservada", "\n"));
 }
 
 void Analyzer::searchWordToken(string line){
@@ -109,6 +124,7 @@ string Analyzer::compareLine(string line){
     string prev_string = line;
     if(line.length()> item.getVal().length()) {
       line = Helper::deleteStringFromLine(line, item.getVal());
+      /* cout << "line to compare: " << line << " item: " << item.getVal() << endl; */
       if(line.length() != prev_string.length()){
         cout << "Lexema = " << item.getVal() << " ; Token = " << item.getId() << endl;
       }
