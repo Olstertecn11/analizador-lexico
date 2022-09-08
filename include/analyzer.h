@@ -1,8 +1,6 @@
 #include <vector>
-#include <iostream>
 /* #include "token.cpp" */
 #include "./../src/token.cpp"
-using namespace std;
 
 
 class Analyzer
@@ -10,15 +8,30 @@ class Analyzer
   private:
     vector<Token> singleTokens;
     vector<Token> wordTokens;
-    /* vector<Token> foundTokens; */
+    vector<Token> foundTokens;
   public:
     Analyzer();
-    /* vector<string> split(string); */
+    vector<string> split(string);
     void generateSingleTokens();
     void generateWordTokens();
     void searchSingleToken(string);
-    /* void searchWordToken(string); */
+    void searchWordToken(string);
     bool isSinleToken(string);
     Token getSingleToken(string);
+    void analyzeLine(string);
+    string compareLine(string);
     
 };
+
+
+class Helper{
+
+  public:
+    static string deleteStringFromLine(string, string);
+    static string removeSubString(string, int , int );
+    static bool  isTheString(string, int, int, string);
+};
+
+
+
+

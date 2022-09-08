@@ -30,7 +30,7 @@ void A_Controller::loadFile(string filename){
   if(file.is_open()){
     while(!file.eof()){
       getline(file, cadena);
-      this->analyzer.searchSingleToken(cadena);
+      this->analyzer.analyzeLine(cadena);
     }
     file.close();
   }

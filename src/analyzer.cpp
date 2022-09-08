@@ -1,7 +1,9 @@
 #include "./../include/analyzer.h"
+#include <algorithm>
 
 Analyzer::Analyzer(){
   this->generateSingleTokens();
+  this->generateWordTokens();
 }
 
 
@@ -63,6 +65,74 @@ void Analyzer::generateWordTokens(){
   this->wordTokens.push_back(Token("reservada", "iostream"));
   this->wordTokens.push_back(Token("reservada", "main"));
   this->wordTokens.push_back(Token("reservada", "endl"));
+}
+
+void Analyzer::searchWordToken(string line){
+  
+
+}
+
+
+string Helper::removeSubString(string line, int x, int y){
+  string new_string = "";
+  for(int i = 0; i < line.length(); i++){
+    if(i == x){
+      i = y+1;
+    }
+    new_string += line[i];
+  }
+  return new_string;
+}
+
+
+
+string Helper::deleteStringFromLine(string line, string ref){
+
+  for(int i = 0; i < line.length(); i++){
+    int real_distance = ref.length()-1;
+    if(Helper::isTheString(line, i, i+real_distance, ref)){
+      return Helper::removeSubString(line, i, i+real_distance);
+    }
+  }
+
+  return line;
+}
+
+
+bool Helper::isTheString(string line, int x, int y, string ref){
+  string new_string = "";
+  for(int i = x; i <= y; i++){
+    new_string += line[i];
+  }
+
+  return new_string == ref;
+}
+
+string Analyzer::compareLine(string line){
+  for(Token item : this->wordTokens){
+    string prev_string = line;
+    line = Helper::deleteStringFromLine(line, item.getVal());
+    if(line.length() != prev_string.length()){
+      cout << "Lexema = " << item.getVal() << " ; Token = " << item.getId() << endl;
+    }
+  }
+  for(Token item : this->singleTokens){
+    string prev_string = line;
+    line = Helper::deleteStringFromLine(line, item.getVal());
+    if(line.length() != prev_string.length()){
+      cout << "Lexema = " << item.getVal() << " ; Token = " << item.getId() << endl;
+    }
+  }
+  return line;
+}
+
+void Analyzer::analyzeLine(string line){
+
+  line.erase(remove(line.begin(), line.end(), ' '), line.end());
+  while(line != ""){
+    line = this->compareLine(line);
+  }
+
 }
 
 

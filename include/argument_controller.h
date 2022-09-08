@@ -1,7 +1,6 @@
 #include "./../src/analyzer.cpp"
 /* #include "analyzer.h" */
 /* #include "./../include/analyzer.h" */
-#include <iostream>
 
 
 
