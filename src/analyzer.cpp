@@ -141,7 +141,6 @@ string Analyzer::compareLine(string line){
       cout << "Lexema = " << item.getVal() << " ; Token = " << item.getId() << endl;
     }
   }
- 
   return line;
 }
 
@@ -150,7 +149,7 @@ string Helper::removeSubStringForChar(string line, string ref){
   for(int i = 0; i < line.length(); i++){
     string s(1, line[i]);
     if(s != ref){
-      new_string += s;
+
     }
   }
   return new_string;
@@ -167,9 +166,7 @@ string Analyzer::deleteCharFromLine(string line, string ref){
   return line;
 }
 
-
 void Analyzer::analyzeLine(string line){
-
   line.erase(remove(line.begin(), line.end(), ' '), line.end());
   while(line != ""){
     line = this->compareLine(line);
