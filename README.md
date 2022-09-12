@@ -4,7 +4,7 @@
   
 ### Dependencies
 
-- [g++ compiler](https://www.freecodecamp.org/news/how-to-install-c-and-cpp-compiler-on-windows/) 
+- [g++ compiler](https://www.guru99.com/c-gcc-install.html) 
   
 ## Dev Guide
   > Linux
