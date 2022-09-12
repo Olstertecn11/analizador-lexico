@@ -12,6 +12,8 @@
   cd
   git clone https://github.com/Olstertecn11/analizador-lexico.git
   cd analizador-lexico
+  chmod +x compile.sh
+  ./compile.sh
   ./build/main ~/analizador-lexico/build/file.cpp ~/analizador-lexico/build/prueba.cpp
 ```
 
