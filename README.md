@@ -7,6 +7,7 @@
 - [g++ compiler](https://www.guru99.com/c-gcc-install.html) 
   
 ## Dev Guide
+  We need pass like argument to the program all files we want to analyze
   > Linux
 ```bash
   cd
