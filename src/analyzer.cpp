@@ -36,9 +36,7 @@ bool Analyzer::haveSingleToken(string ref){
   for(int i = 0; i < ref.length(); i++){
     string s(1, ref[i]);
     for(Token token : this->singleTokens){
-      if(token.getVal() == s){
-        return true;
-      }
+      if(token.getVal() == s) return true;
     }
   }
   return false;
@@ -46,9 +44,7 @@ bool Analyzer::haveSingleToken(string ref){
 
 Token Analyzer::getSingleToken(string ref){
   for(int i = 0; i < this->singleTokens.size(); i++){
-    if(ref == this->singleTokens[i].getVal()){
-      return this->singleTokens[i];
-    }
+    if(ref == this->singleTokens[i].getVal()) return this->singleTokens[i];
   }
   return Token("", "");
 }
