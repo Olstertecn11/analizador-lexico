@@ -124,7 +124,6 @@ string Analyzer::compareLine(string line){
     string prev_string = line;
     if(line.length()> item.getVal().length()) {
       line = Helper::deleteStringFromLine(line, item.getVal());
-      /* cout << "line to compare: " << line << " item: " << item.getVal() << endl; */
       if(line.length() != prev_string.length()){
         cout << "Lexema = " << item.getVal() << " ; Token = " << item.getId() << endl;
       }
