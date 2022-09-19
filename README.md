@@ -26,3 +26,11 @@
   g++ -std=c++17 ./src/main.cpp -o ./build/main
   ./build/main ~/analizador-lexico/build/file.cpp ~/analizador-lexico/build/prueba.cpp
 ```
+
+## Collaborators
+  `
+    Oliver Jose Tzunun Davila       0901-20-10107
+    Luis Alberto Franco Moran       0901-20-23979
+    Daniel Antonio Hernández Santos 0901-20-1190
+    
+  `
