@@ -4,5 +4,5 @@
 
 int main(){
   int i, j, k;
-  printf("Ingrese numero: ");
+  printf("Ingrese un numero: ");
 }

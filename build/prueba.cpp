@@ -3,6 +3,6 @@ using namespace std;
 
 
 int main(){
-  cout << "archivo de prueba lol" << endl;
+  cout << "Este es un archivo prueba" << endl;
   return 0;
 }
