@@ -1,5 +1,9 @@
 #include "./../include/analyzer.h"
 #include <algorithm>
+#include <cctype>
+#include <ctype.h>
+#include <fstream>
+#include <iostream>
 
 Analyzer::Analyzer() {
   this->generateSingleTokens();
@@ -23,7 +27,7 @@ void Analyzer::generateSingleTokens() {
   this->singleTokens.push_back(Token("ParentesisDer", ")"));
   this->singleTokens.push_back(Token("LlavesDer", "{"));
   this->singleTokens.push_back(Token("LlavesIzq", "}"));
-  string letters = "abcdefjhigklmnñopqrstuvwxyz";
+  string letters = "abcdefghijklmnopqrstuvwxyz";
   for (int i = 0; i < letters.length(); i++) {
     string s(1, letters[i]);
     this->singleTokens.push_back(Token("Id", s));
@@ -59,6 +63,7 @@ void Analyzer::generateWordTokens() {
   this->wordTokens.push_back(Token("reservada", "include"));
   this->wordTokens.push_back(Token("reservada", "int"));
   this->wordTokens.push_back(Token("reservada", "float"));
+  this->wordTokens.push_back(Token("reservada", "if"));
   this->wordTokens.push_back(Token("reservada", "char"));
   this->wordTokens.push_back(Token("reservada", "for"));
   this->wordTokens.push_back(Token("reservada", "while"));
@@ -75,6 +80,16 @@ void Analyzer::generateWordTokens() {
 }
 
 void Analyzer::searchWordToken(string line) {}
+
+bool Analyzer::isLetter(string line) {
+  string letters = "abcdefghijklmnopqrstuvwxyz";
+  for (int i = 0; i < line.length(); i++) {
+    if (line[i] == letters[i]) {
+      return true;
+    }
+  }
+  return false;
+}
 
 string Helper::removeSubString(string line, int x, int y) {
   string a_string = line.substr(0, x);
@@ -106,28 +121,78 @@ bool Helper::isTheString(string line, int x, int y, string ref) {
 }
 
 string Analyzer::compareLine(string line) {
+  ofstream archivo;
+  archivo.open("salida.txt", ios::app);
+  if (!archivo.is_open()) {
+    cout << "error abriendo xd \n";
+  }
+
+  int posx = 0;
+  int posy = 0;
+  for (int i = 0; i < line.length(); i++) {
+    if (line[i] == '\"') {
+      posx = i;
+      break;
+    }
+  }
+  for (int i = posx + 1; i < line.length(); i++) {
+    if (line[i] == '\"') {
+      posy = i;
+      break;
+    }
+  }
+
+  if (posx != 0) {
+    string nueva = "";
+    string aux = "";
+    for (int i = 0; i < line.length(); i++) {
+      if (i < posx || i > posy) {
+        nueva += line[i];
+      } else {
+        aux += line[i];
+      }
+    }
+    archivo << "<" << aux << "> "
+            << " cadena " << endl;
+    line = nueva;
+  }
 
   for (Token item : this->wordTokens) {
     string prev_string = line;
     if (line.length() > item.getVal().length()) {
       line = Helper::deleteStringFromLine(line, item.getVal());
       if (line.length() != prev_string.length()) {
-        cout << "<" << item.getVal() << ">  " << item.getId() << endl;
+        archivo << "<" << item.getVal() << ">  " << item.getId() << endl;
       }
     }
+  }
+
+  if (this->isLetter(line)) {
+    string rep = line;
+    for (int i = 0; i < line.length(); i++) {
+      if (std::isalpha(line[i]) != 0) {
+        archivo << "<id>" << line[i] << endl;
+      }
+      rep += line[i];
+    }
+    line = rep;
   }
 
   for (Token item : this->singleTokens) {
     string prev_string = line;
     if (line == "")
       return line;
-    if (!this->haveSingleToken(line))
+    if (!this->haveSingleToken(line)) {
+      archivo << "vacia: " << line << endl;
       return "";
+    }
     line = this->deleteCharFromLine(line, item.getVal());
     if (line.length() != prev_string.length()) {
-      cout << "<" << item.getVal() << "> " << item.getId() << endl;
+      archivo << "<" << item.getVal() << "> " << item.getId() << endl;
     }
   }
+  if (archivo.is_open())
+    archivo.close();
   return line;
 }
 

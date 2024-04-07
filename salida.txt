@@ -1,0 +1,34 @@
+Analisis 
+___________________ 
+<include>  reservada
+<#> numeral
+Analisis 
+___________________ 
+<using>  reservada
+<namespace>  reservada
+<std>  reservada
+<;> PuntoYComa
+Analisis 
+___________________ 
+<int>  reservada
+<main>  reservada
+<(> ParentesisIzq
+Analisis 
+___________________ 
+<if>  reservada
+<=> Igual
+Analisis 
+___________________ 
+<"HOlamundo">  cadena 
+<cout>  reservada
+<id>e
+<id>n
+<id>d
+<id>l
+<;> PuntoYComa
+Analisis 
+___________________ 
+<}> LlavesIzq
+Analisis 
+___________________ 
+<}> LlavesIzq

@@ -1,8 +1,8 @@
 #include <iostream>
 using namespace std;
 
-
-int main(){
-  cout << "Este es un archivo prueba" << endl;
-  return 0;
+int main() {
+  if (10 == 10) {
+    cout << "HOla mundo" << endl;
+  }
 }
